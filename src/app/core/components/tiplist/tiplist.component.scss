@@ -1,0 +1,56 @@
+
+@import '../../../../../mixins';
+@import '../../../../../variables';
+.btn-custom {
+  border: 1px solid white !important;
+  color: #db1d29;
+  background: #fff;
+}
+
+.dispatch-board-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  @include breakpoint(phone-landscape) {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .nav
+  {
+    display: inline;
+  }
+}
+.nav-link
+{
+  padding: 13px;
+  color: #000000;
+}
+.list-group-item.list-heading-grp.bg-dark
+{
+  padding: 0.9rem 1rem;
+}
+.list-group-item
+{
+  padding: 0 !important;
+}
+.tab-content.tab-content-vertical {
+  border-top: 1px solid #f3f3f3;
+}
+.nav-link.active{
+  color: #fff !important;
+background-color: #db1d29 !important;
+}
+.nav-tabs .nav-link {
+  background: #f6f8fa;
+  color: #000000;
+  border-radius: 0;
+  border: 1px solid #f3f3f3;
+  padding: .75rem 1.5rem;
+}
+.nav-tabs.nav-tabs-vertical{
+flex-direction: column !important;
+}
+.stretch-card {
+  display: block;
+}

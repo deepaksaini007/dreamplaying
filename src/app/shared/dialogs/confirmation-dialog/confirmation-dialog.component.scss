@@ -1,0 +1,31 @@
+@import '../../../../../mixins';
+@import '../../../../../variables';
+.mr-2
+{
+  margin-right: 20px;
+}
+.are-you-sure {
+  // width: 350px;
+  text-align: center;
+  img {
+      margin-bottom: 20px;
+      width: 70px;
+  }
+  h5 {
+      color: $secondary;
+      @include fonts(23px, 1.4, 500);
+  }
+  p {
+      color: $gray;
+      @include fonts(16px, 1.4, 400);
+      margin-bottom: 30px;
+  }
+}
+.dialog-foot {
+  text-align: center;
+  button {
+      &:not(:last-child) {
+          margin-right: 10px;
+      }
+  }
+}

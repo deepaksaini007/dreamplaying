@@ -1,0 +1,194 @@
+<app-header></app-header>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper bevel tlbr">
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <!--TITLE -->
+      <div id="paper-top" class="col-md-12">
+        <div class="row">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Video List
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!--/ TITLE -->
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div
+              class="col-md-12 dispatch-board-top-section"
+              *ngIf="activeCategoryView"
+            >
+              <ul
+                class="nav nav-pills nav-pills-custom"
+                id="pills-tab-custom"
+                role="tablist"
+              >
+                <li class="nav-item" *ngFor="let item of categoryKeys">
+                  <a
+                    class="btn"
+                    matRipple
+                    [ngClass]="{
+                      'btn-primary': activeCategoryView === item,
+                      'not-active': activeCategoryView !== item
+                    }"
+                    (click)="changeCategoryView(item)"
+                    >{{ item | uppercase }}({{
+                      videoMasterData && videoMasterData[item]?.length
+                    }})</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="strap-background card-heading-wrap">
+                <h4 class="card-title bg-primary text-white p-2">
+                  Videos List
+                </h4>
+                <div class="card-heading-action">
+                  <button
+                    type="button"
+                    (click)="truncateVideo()"
+                    class="btn btn-custom btn-sm mr-2"
+                  >
+                    Delete ALL
+                  </button>
+                  <button
+                    type="button"
+                    (click)="openAddVideo()"
+                    class="btn btn-custom btn-sm"
+                  >
+                    Add Video
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row card-row">
+                  <div *ngIf="rowData && rowData.length <= 0">
+                    <app-no-rows
+                      [noRowsMessage]="'No Videos Found'"
+                    ></app-no-rows>
+                  </div>
+                  <div
+                    class="col-lg-3 col-md-4 col-sm-6 col-xs-12 card-col"
+                    *ngFor="let row of rowData"
+                  >
+                    <div class="h-100 card card-common">
+                      <div class="card-action">
+                        <button
+                          mat-icon-button
+                          [matMenuTriggerFor]="menu"
+                          aria-label="Example icon-button with a menu"
+                        >
+                          <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                          <button
+                            mat-menu-item
+                            [disabled]="row.is_published"
+                            (click)="publishVideo(row)"
+                          >
+                            <span>Publish</span>
+                          </button>
+                          <button mat-menu-item (click)="editVideo(row)">
+                            <span>Edit</span>
+                          </button>
+                          <button
+                            mat-menu-item
+                            (click)="activateDeactivateVideo(row)"
+                          >
+                            <span *ngIf="!row.is_active">Active</span>
+                            <span *ngIf="row.is_active">Deactive</span>
+                          </button>
+                          <button
+                            mat-menu-item
+                            (click)="featuredNotFeatured(row)"
+                          >
+                            <span *ngIf="!row.is_featured">Set Featured</span>
+                            <span *ngIf="row.is_featured">Remove featured</span>
+                          </button>
+                          <button
+                            mat-menu-item
+                            style="
+                              background-color: #db1d29 !important;
+                              color: #fff !important;
+                            "
+                            (click)="deleteVideo(row)"
+                          >
+                            <span>Delete</span>
+                          </button>
+                        </mat-menu>
+                      </div>
+                      <div class="card-thumbnail">
+                        <img [src]="row.image_thumbnail" alt="" />
+                        <div class="publish-date">
+                          <p>
+                            <span>Publish Date: </span
+                            >{{ row.published_on | date: "MMM dd, yyyy" }}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <!-- <div class="publish-date-body">
+                                                    <p><span>Publish Date: </span>Jun 09, 2021</p>
+                                                </div> -->
+                        <div class="card-title">
+                          <h2>{{ row.video_title_en }}</h2>
+                          <h3>{{ row.video_title_hn }}</h3>
+                        </div>
+                        <div class="card-description">
+                          <p
+                            [innerHtml]="
+                              row.video_decription_en?.substring(0, 150) + '...'
+                            "
+                          ></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="row gy-5"><div class="col-md-4 col-lg-4 col-xl-2" *ngFor="let row of rowData">
+                                <mat-card class="example-card h-100" >
+
+                                    <img mat-card-image [src]="row?.image_thumbnail" alt="Photo of a Shiba Inu">
+                                    <div class="publish-ribbon" [ngStyle]="{'backgroundColor': row?.is_published?'#32cd32':'#db1d29'}">{{row?.is_published?'Published':'Not Published'}}</div>
+                                    <div class="featured-icon" *ngIf="row?.is_featured">
+                                        <i class="material-icons">star</i>
+                                    </div>
+                                    <mat-card-header>
+                                        <mat-card-title>{{row?.video_title_en}}</mat-card-title>
+                                        <mat-card-subtitle>Published on {{row?.published_on|date:'MMM dd, yyyy'}}</mat-card-subtitle>
+                                      </mat-card-header>
+                                    <mat-card-content>
+                                      <p>
+                                        {{row?.video_decription_en}}
+                                      </p>
+                                    </mat-card-content>
+                                    <mat-card-actions>
+                                      <button mat-button *ngIf="!(row?.is_published)" color="primary">Publish</button>
+                                      <button mat-button>Edit</button>
+
+                                    </mat-card-actions>
+                                  </mat-card>
+                               </div></div>
+                                 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <!-- partial -->
+    </div>
+
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

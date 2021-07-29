@@ -1,0 +1,418 @@
+// Toggles
+//
+// Used in conjunction with global variables to enable certain theme features.
+// Vendor
+@import "./variables";
+@mixin align-center {
+    display: flex;
+    align-items: center
+}
+
+@mixin align-center-right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+@mixin align-center-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin flexbox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin verticalCenter {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@mixin text-overflow {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+    -webkit-transition: $what $time $how;
+    -moz-transition: $what $time $how;
+    -ms-transition: $what $time $how;
+    -o-transition: $what $time $how;
+    transition: $what $time $how;
+}
+
+@mixin alignment($direction) {
+    display: flex;
+    @if $direction==left {
+        justify-content: flex-start;
+    }
+    @else if $direction==center {
+        justify-content: center;
+    }
+    @if $direction==right {
+        justify-content: flex-end;
+    }
+}
+
+@mixin buttonStyle($button) {
+    @include fonts(14px, 1.4, 500);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    @include boxShadow(0, 4px, 8px, 0);
+    font-weight: 500;
+    text-align: center;
+    padding: 6px 14px;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    outline: none;
+    &:focus {
+        box-shadow: none;
+    }
+    @if $button==filled {
+        background: $primary;
+        color: $white;
+        border-color: $primary;
+    }
+    @else if $button==primary {
+        background: $primary;
+        border: 1px solid $primary;
+        color: $white;
+        box-shadow: none;
+    }
+    @else if $button==secondary {
+        background: $secondary;
+        border: 1px solid $secondary;
+        color: $white;
+        box-shadow: none;
+    }
+    @else if $button==stroke {
+        background: $white;
+        border: 1px solid $primary;
+        color: $primary;
+        box-shadow: none;
+    }
+    @else if $button==success {
+        background: #91C714;
+        border: 1px solid #91C714;
+        color: $white;
+    }
+    @else if $button==reset {
+        background: #ffcab8;
+        color: $primary;
+        border: 1px solid #ffcab8;
+        box-shadow: none;
+    }
+    @else if $button==disable {
+        background: $light-gray;
+        border: 1px solid $light-gray;
+        color: #9e9e9e;
+        box-shadow: none;
+    }
+    @else if $button==danger {
+        background: #D32929;
+        border: 1px solid #D32929;
+        color: $white;
+        box-shadow: none;
+    }
+    @else if $button==flat {
+        background: $white;
+        border: 1px solid $white;
+        color: $dark;
+        box-shadow: none;
+    }
+}
+
+@mixin badge($width, $height, $color) {
+    width: $width;
+    height: $height;
+    background: $color;
+    border-radius: 50%;
+    line-height: $height;
+    display: inline-block;
+    font-size: $width/2;
+    color: #000;
+    @if $color==primary {
+        background: $primary;
+        color: $white;
+    }
+    @else if $color==secondary {
+        background: #ffffff;
+        color: $dark;
+    }
+}
+
+@mixin body-container ($margin) {
+    @if $margin==up {
+        .heading {
+            h2 {
+                color: $white
+            }
+        }
+    }
+    @else {
+        .heading {
+            h2 {
+                color: $dark
+            }
+        }
+    }
+}
+
+@mixin alert ($alertStyle) {
+    position: relative;
+    padding: 3px 8px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    @if $alertStyle==danger {
+        color: $danger;
+        background-color: rgba(255, 77, 99, 0.1);
+    }
+    @else if $alertStyle==primary {
+        color: #004085;
+        background-color: #cce5ff;
+        border-color: #b8daff;
+    }
+    @else if $alertStyle==secondary {
+        color: #383d41;
+        background-color: #e2e3e5;
+        border-color: #d6d8db;
+    }
+    @else if $alertStyle==success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+    @else if $alertStyle==warning {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+    }
+    @else if $alertStyle==info {
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+    }
+    @else if $alertStyle==light {
+        color: #818182;
+        background-color: #fefefe;
+        border-color: #fdfdfe;
+    }
+    @else if $alertStyle==dark {
+        color: #1b1e21;
+        background-color: #d6d8d9;
+        border-color: #c6c8ca;
+    }
+}
+
+@mixin fonts($size, $height, $weight) {
+    font-size: $size;
+    line-height: $height;
+    font-weight: $weight;
+}
+
+@mixin borderRadius($direction: all, $radius:5px) {
+    @if $direction==topLeft {
+        border-top-left-radius: $radius;
+        -webkit-border-top-left-radius: $radius;
+        -moz-border-top-left-radius: $radius;
+    }
+    @else if $direction==topRight {
+        border-top-right-radius: $radius;
+        -webkit-border-top-right-radius: $radius;
+        -moz-border-top-right-radius: $radius;
+    }
+    @else if $direction==bottomLeft {
+        border-bottom-left-radius: $radius;
+        -webkit-border-bottom-left-radius: $radius;
+        -moz-border-bottom-left-radius: $radius;
+    }
+    @else if $direction==bottomRight {
+        border-bottom-right-radius: $radius;
+        -webkit-border-bottom-right-radius: $radius;
+        -moz-border-bottom-right-radius: $radius;
+    }
+    @else if $direction==all {
+        border-radius: $radius;
+        -webkit-border-radius: $radius;
+        -moz-border-radius: $radius;
+    }
+}
+
+@mixin boxShadow($left:left, $right:right, $spread:spread, $blur:blur, $color:rgba(0, 0, 0, 0.05)) {
+    box-shadow: $left $right $spread $blur $color;
+    -webkit-box-shadow: $left $right $spread $blur $color;
+    -moz-box-shadow: $left $right $spread $blur $color;
+}
+
+@mixin border($direction: all, $width: 1px, $type: solid, $color: $black) {
+    @if $direction==top {
+        border-top: $width $type $color;
+        -webkit-border-top: $width $type $color;
+        -moz-border-top: $width $type $color;
+    }
+    @else if $direction==bottom {
+        border-bottom: $width $type $color;
+        -webkit-border-bottom: $width $type $color;
+        -moz-border-bottom: $width $type $color;
+    }
+    @else if $direction==left {
+        border-left: $width $type $color;
+        -webkit-border-left: $width $type $color;
+        -moz-border-left: $width $type $color;
+    }
+    @else if $direction==right {
+        border-right: $width $type $color;
+        -webkit-border-right: $width $type $color;
+        -moz-border-right: $width $type $color;
+    }
+    @else if $direction==all {
+        border: $width $type $color;
+        -webkit-border: $width $type $color;
+        -moz-border: $width $type $color;
+    }
+}
+
+@mixin breakpoint($breakpoint) {
+    @if $breakpoint==phone {
+        @media (max-width: $phone) {
+            @content;
+        }
+    }
+    @else if $breakpoint==phone-sm {
+        @media (max-width: $phone-sm) {
+            @content;
+        }
+    }
+    @else if $breakpoint==phone-landscape {
+        @media (max-width: $phone-landscape) {
+            @content;
+        }
+    }
+    @else if $breakpoint==tablet {
+        @media (max-width: $tablet) {
+            @content;
+        }
+    }
+    @else if $breakpoint==laptopview {
+        @media (max-width: $laptopview) {
+            @content;
+        }
+    }
+    @else if $breakpoint==laptop {
+        @media (max-width: $laptop) {
+            @content;
+        }
+    }
+    @else if $breakpoint==dekstop {
+        @media (max-width: $dekstop) {
+            @content;
+        }
+    }
+    @else if $breakpoint==large {
+        @media (max-width: $large) {
+            @content;
+        }
+    }
+}
+
+@mixin colors($color-code) {
+    @if $color-code==primary {
+        color: $primary;
+    }
+    @else if $color-code==secondary {
+        color: $yellow;
+    }
+    @if $color-code==success {
+        color: $success;
+    }
+    @if $color-code==danger {
+        color: $danger;
+    }
+    @if $color-code==disable {
+        color: $gray;
+    }
+}
+
+.radio-primary {
+    margin-bottom: 16px;
+    p {
+        color: #5f6368;
+        margin-bottom: 12px;
+        @include fonts(12px, 1.5, 500);
+    }
+    .mat-radio-button {
+        .mat-radio-label {
+            margin-bottom: 0;
+            margin-right: 26px;
+            .mat-radio-label-content {
+                font-weight: 500;
+                color: black;
+            }
+        }
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+@mixin menu-style {
+    @include media-breakpoint-up(md) {
+        position: absolute;
+        top: 61px;
+        z-index: 999;
+        background: $horizontal-bottom-bg;
+        border-top: none;
+        border-radius: 4px;
+        box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+        -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+        li {
+            a {
+                position: relative;
+                padding-left: 20px;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    width: 6px;
+                    height: 2px;
+                    border-radius: 100%;
+                    background: theme-color(secondary);
+                    top: 12px;
+                    left: 0;
+                }
+            }
+        }
+    }
+    @include media-breakpoint-down(md) {
+        position: relative;
+        top: 0;
+        box-shadow: none;
+    }
+}
+
+@mixin show-submenu {
+    .submenu {
+        display: block;
+    }
+    >.nav-link {
+        background: $horizontal-bottom-menu-item-hover-bg;
+        i,
+        .menu-title {
+            color: $horizontal-bottom-menu-item-hover-color;
+            transition: color 1s ease;
+        }
+        .menu-arrow {
+            @include transform(rotate(-180deg));
+            @include transform-origin(center);
+            @include transition-duration($action-transition-duration);
+        }
+    }
+}

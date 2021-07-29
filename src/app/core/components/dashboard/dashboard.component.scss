@@ -1,0 +1,217 @@
+@import '../../../../../variables';
+@import '../../../../../mixins';
+// @import '../../../../style.css';
+.card-body .table-responsive {
+    height: 25rem;
+}
+
+.material-icons {
+    font-size: 28px;
+}
+
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 28px;
+    width: 28px;
+}
+
+.card-col {
+    margin-top: 30px;
+    @include breakpoint(tablet) {
+        // margin-top: 15px;
+    }
+}
+
+.mat-focus-indicator {
+    margin-right: 0;
+}
+
+.bg-default {
+    background-color: white;
+}
+
+.card-dash {
+    border: none;
+    @include boxShadow(0, 4px, 8px, 0);
+    background: $white;
+    padding: 15px;
+    @include borderRadius();
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    cursor: pointer;
+    overflow: inherit;
+    transform: scale(1);
+    @include transition();
+    &:hover {
+        transform: scale(1.02);
+        @include transition();
+    }
+    .card-img {
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #FFEDE7;
+    }
+    .card-content {
+        padding-left: 15px;
+        h4 {
+            margin: 0;
+            color: $secondary;
+            @include fonts(16px, 1.4, 500);
+        }
+    }
+    .arrow {
+        position: absolute;
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 15px;
+    }
+    &.card1 {
+        display: block;
+        cursor: auto;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.card-ribbon {
+    position: absolute;
+    right: 20px;
+    top: -15px;
+    background: $primary;
+    width: auto;
+    min-width: 50px;
+    padding: 0 10px;
+    height: 32px;
+    border-radius: 5px 0 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-left: 0px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 14px solid #DC5C30;
+        right: -10px;
+        top: -1px;
+    }
+    p {
+        margin: 0;
+        color: $white;
+    }
+}
+
+.card-dash-row {
+    margin-bottom: 30px;
+}
+
+.mat-fab .mat-button-wrapper {
+    padding: 0;
+    display: inline-block;
+    line-height: 24px;
+}
+
+.dashboard-cards {
+    width: 20%;
+    @include breakpoint(laptopview) {
+        width: 25%;
+        margin-bottom: 15px;
+    }
+    @include breakpoint(tablet) {
+        width: 33.3333%;
+    }
+    @include breakpoint(phone-landscape) {
+        width: 50%;
+    }
+    @include breakpoint(phone) {
+        width: 100%;
+    }
+    .card {
+        padding: 16px;
+        border: none;
+        @include boxShadow(0, 4px, 8px, 0);
+        background: $white;
+        flex-direction: row;
+        height: auto;
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 15px;
+            width: calc(100% - 60px);
+            h3 {
+                @include fonts(20px, 1.4, 500);
+                color: $secondary;
+                margin: 0;
+            }
+            p {
+                @include fonts(14px, 1.4, 400);
+                color: $secondary;
+                opacity: 0.7;
+                margin: 0;
+            }
+        }
+        .card-thumbnail {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            &.card-thumbnail-1 {
+                background: rgb(219 29 41 / 22%);
+                border: 1px solid rgb(219 29 41 / 22%);
+                color: $primary;
+            }
+            &.card-thumbnail-2 {
+                background: rgb(255 193 7 / 22%);
+                border: 1px solid rgb(255 193 7 / 22%);
+                color: rgb(255 193 7 / 100%);
+            }
+            &.card-thumbnail-3 {
+                background: rgb(0 43 255 / 22%);
+                border: 1px solid rgb(0 43 255 / 22%);
+                color: rgb(0 43 255 / 100%);
+            }
+            &.card-thumbnail-4 {
+                background: rgb(13 202 240 / 22%);
+                border: 1px solid rgb(13 202 240 / 22%);
+                color: rgb(13 202 240 / 100%);
+            }
+            &.card-thumbnail-5 {
+                background: rgb(13 240 125 / 22%);
+                border: 1px solid rgb(13 240 125 / 22%);
+                color: rgb(13 240 125 / 100%);
+            }
+        }
+        &.card-solid-color {
+            .card-info {
+                h3 {
+                    color: $white;
+                }
+                p {
+                    color: $white;
+                }
+            }
+            &.card-solid-color-1 {
+                background: rgb(219 29 41 / 100%);
+                .card-thumbnail {
+                    background: $white;
+                }
+            }
+        }
+    }
+}

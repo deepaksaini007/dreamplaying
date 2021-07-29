@@ -1,0 +1,11 @@
+
+<mat-dialog-content class="are-you-sure ">
+  <img src="assets/images/alert.png" class="mb-4 mt-2">
+
+    <h5>{{data.title}}</h5>
+    <p>{{data.description}}<br> <span class="text-danger"> {{data.message}}</span></p>
+</mat-dialog-content>
+<div class="dialog-foot">
+    <button mat-button mat-dialog-close class="mr-2">Cancel</button>
+    <button mat-button (click)="confirm()" class="btn btn-danger">Confirm</button>
+</div>

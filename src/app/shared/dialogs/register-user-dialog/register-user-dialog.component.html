@@ -1,0 +1,116 @@
+<div class="modal-head">
+  <h4>Add User</h4>
+  <i class="material-icons" (click)="closeDialog()">close</i>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <form  class="add-driver" [formGroup]="userFormGroup">
+      <div class="row">
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Enter Full Name</mat-label>
+                  <input matInput formControlName="display_name" minlength="2" maxlength="30">
+                  <mat-error>Full Name is Required (minimum 2 Char)</mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Enter User Name</mat-label>
+                  <input matInput formControlName="user_login_elm" maxlength="30" minlength="5">
+                  <mat-error>User Name is Required (minimum 5 Char)</mat-error>
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Select Gender</mat-label>
+                  <mat-select formControlName="user_gender">
+                      <mat-option value="male">Male</mat-option>
+                      <mat-option value="female">Female</mat-option>
+                      <mat-option value="others">Others</mat-option>
+                  </mat-select>
+                  <mat-error>Gender is Required </mat-error>
+
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Enter Email</mat-label>
+                  <input matInput formControlName="user_email_elm" type="email" minlength="10" maxlength="300">
+                  <mat-error>Email not valid (minimum 10 Char)</mat-error>
+
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Enter password</mat-label>
+                  <input matInput formControlName="user_pass_elm" minlength="8" maxlength="16" type="{{ isPasswordVisible ? 'text' : 'password' }}">
+                  <mat-icon
+                  style="cursor: pointer; color: 'grey'"
+                  matSuffix
+                  (click)="isPasswordVisible = !isPasswordVisible"
+                  >{{
+                    isPasswordVisible ? "visibility_off" : "visibility"
+                  }}</mat-icon
+                >
+                <mat-error>Password not valid (minimum 8 Char)</mat-error>
+
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Enter Phone number</mat-label>
+                  <input matInput type="text" formControlName="user_phone_elm" maxlength="12" minlength="10">
+                  <mat-error>Phone Number is Required (minimum 10 Char)</mat-error>
+
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Enter Auth code</mat-label>
+                  <input matInput formControlName="user_auth_code" minlength="6" maxlength="10" type="{{ isPasswordVisible ? 'text' : 'password' }}">
+                  <mat-icon
+                  style="cursor: pointer; color: 'grey'"
+                  matSuffix
+                  (click)="isPasswordVisible = !isPasswordVisible"
+                  >{{
+                    isPasswordVisible ? "visibility_off" : "visibility"
+                  }}</mat-icon
+                >
+                <mat-error>AuthCode not valid (minimum 6 Char)</mat-error>
+
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Select User Role</mat-label>
+                  <mat-select formControlName="user_role">
+                     <mat-option value="admin">Admin</mat-option>
+                     <mat-option value="staff">Staff</mat-option>
+                  </mat-select>
+                  <mat-error>Select a user role</mat-error>
+
+              </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field appearance="outline">
+                  <mat-label>Select Menus to assign</mat-label>
+                  <mat-select multiple formControlName="assigned_menu_details" [compareWith]="objectComparisonFunction">
+                      <mat-option [value]="menu" *ngFor="let menu of allAvailableMenus$|async">{{menu.menu_name}}</mat-option>
+                  </mat-select>
+                  <mat-error>Assign one menu to continue</mat-error>
+
+              </mat-form-field>
+          </div>
+
+      </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <div class="text-right btn-wrap">
+      <button class="btn btn-primary" type="submit" (click)="submitData()">
+  Submit
+</button>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,233 @@
+<app-header></app-header>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper bevel tlbr">
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <!--TITLE -->
+      <div id="paper-top" class="col-md-12">
+        <div class="row">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Prediction List
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!--/ TITLE -->
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div
+              class="col-md-12 dispatch-board-top-section"
+              *ngIf="activeCategoryView"
+            >
+              <ul
+                class="nav nav-pills nav-pills-custom"
+                id="pills-tab-custom"
+                role="tablist"
+              >
+                <li class="nav-item" *ngFor="let item of categoryKeys">
+                  <a
+                    class="btn"
+                    matRipple
+                    [ngClass]="{
+                      'btn-primary': activeCategoryView === item,
+                      'not-active': activeCategoryView !== item
+                    }"
+                    (click)="changeCategoryView(item)"
+                    >{{ item | uppercase }}({{
+                      predictionMasterData &&
+                        predictionMasterData[item]?.length
+                    }})</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="strap-background card-heading-wrap">
+                <h4 class="card-title bg-primary text-white p-2">
+                  Prediction List
+                </h4>
+                <div class="card-heading-action">
+                  <button
+                    type="button"
+                    (click)="addMatch()"
+                    class="btn btn-custom btn-sm"
+                  >
+                    Add Match
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row card-row">
+                <div
+                  class="col-md-4 card-col card-col-predict"
+                  *ngFor="let row of rowData"
+                >
+                  <div class="card card-common card-predict">
+                    <div class="card-thumbnail">
+                      <img
+                        src="assets/images/stadium.png"
+                        alt=""
+                        class="stadium"
+                      />
+                      <div class="match-details">
+                        <div class="row">
+                          <div class="card-action">
+                            <button
+                              class="floatbtn"
+                              mat-icon-button
+                              [matMenuTriggerFor]="menu"
+                              aria-label="Example icon-button with a menu"
+                            >
+                              <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="editMatch(row)">
+                                <span>Edit</span>
+                              </button>
+                              <button
+                                mat-menu-item
+                                (click)="addPredictionToMatch(row)"
+                              >
+                                <span>Predict</span>
+                              </button>
+
+                              <button
+                                mat-menu-item
+                                (click)="deletePredictions(row)"
+                                style="
+                                  background-color: #db1d29 !important;
+                                  color: #fff !important;
+                                "
+                              >
+                                <span>Delete</span>
+                              </button>
+                            </mat-menu>
+                          </div>
+                          <img
+                            src="assets/images/clipart-3.svg"
+                            alt=""
+                            class="vs"
+                          />
+                          <div class="col-md-6 match-col match-left">
+                            <div class="match-info">
+                              <div class="match-thumb">
+                                <img [src]="row.team_left_logo" alt="" />
+                              </div>
+                              <div class="match-content">
+                                <small>Team Left</small>
+                                <p>{{ row.team_left_name }}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 match-col match-right">
+                            <div class="match-info">
+                              <div class="match-thumb">
+                                <img [src]="row.team_right_logo" alt="" />
+                              </div>
+                              <div class="match-content">
+                                <small>Team Right</small>
+                                <p>{{ row.team_right_name }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-title">
+                        <h2>{{ row.match_title_en }}</h2>
+                        <span
+                          class="status status-inactive"
+                          matTooltip="Click here to Predict Match"
+                          (click)="addPredictionToMatch(row)"
+                        >
+                          Predict</span
+                        >
+                      </div>
+                    </div>
+                    <!-- <div class="card-body">
+                                            <div class="card-title">
+                                                <h2>{{row.match_title_en}}</h2>
+                                                <span class="status" [ngClass]="{'status-active': row.has_prediction,'status-inactive':!row.has_prediction}">{{row.has_prediction?'Active':'Inactive'}}</span>
+                                            </div>
+                                        </div> -->
+                    <!-- <div class="card-footer">
+                                            <button class="btn btn-bordered" (click)="addPredictionToMatch(row)">Predict</button>
+                                            <button class="btn btn-primary" (click)="editMatch(row)">Edit Match</button>
+                                        </div> -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr class="thead-background thead-color">
+                                            <th>Title </th>
+                                            <th>Description </th>
+                                            <th>Status</th>
+                                            <th>Order Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE</td>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE...</td>
+                                            <td><span class="badge badge-primary">Deactive</span></td>
+                                            <td>
+                                                <button mat-button [matMenuTriggerFor]="menu">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item>Edit</button>
+                                                </mat-menu>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE</td>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE...</td>
+                                            <td><span class="badge badge-success">Active</span></td>
+                                            <td>
+                                                <button mat-button [matMenuTriggerFor]="menu">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item (click)=addNews()> Item 1</button>
+                                                    <button mat-menu-item>Item 2</button>
+                                                </mat-menu>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table><br>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="Loadlisting_info" role="status"
+                                            aria-live="polite">
+                                            Showing 1 to 2 of 2 entries
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7"></div>
+                                </div>
+                            </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="div-extraspace"></div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <!-- partial -->
+  </div>
+
+  <!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+<app-footer></app-footer>

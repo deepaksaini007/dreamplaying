@@ -1,0 +1,22 @@
+@import '../../../mixins';
+@import '../../../variables';
+::ng-deep {
+    .cdk-overlay-pane {
+        &.card-details {
+            width: 50%;
+            @include breakpoint(phone-landscape) {
+                width: 50%;
+            }
+            @include breakpoint(phone) {
+                width: 95%;
+            }
+        }
+    }
+}
+
+.modal-body {
+    padding: 0;
+    p {
+        @include fonts(14px, 1.4, 400);
+    }
+}

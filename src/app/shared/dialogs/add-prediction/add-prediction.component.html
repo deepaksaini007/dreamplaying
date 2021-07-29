@@ -1,0 +1,43 @@
+<div class="modal-head">
+  <h4>Add  Prediction </h4>
+  <i class="material-icons" (click)="closeDialog()">close</i>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="formData">
+      <div class="row">
+
+          <div class="col-md-9">
+              <div class="row">
+
+
+
+                        <div class="col-md-6">
+                         <ckeditor [config]="ckEditorConfig" [editor]="Editor" formControlName="preview_text_en" maxlength="1200"></ckeditor>
+                      </div>
+
+
+                          <div class="col-md-6">
+                            <ckeditor [config]="ckEditorConfig" [editor]="Editor" formControlName="preview_text_hn" maxlength="1200"></ckeditor>
+                          </div>
+
+
+
+                      </div>
+          </div>
+          <div class="col-md-3">
+
+                <app-image-upload [base64Image]="bsae64PredictionImage" (onImageChanged)="onImageChanged($event)"></app-image-upload>
+          </div>
+      </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <div class="text-right btn-wrap">
+      <button class="btn btn-primary" type="submit" [disabled]="!formData.valid || !bsae64PredictionImage" (click)="submitData()" >
+  Submit
+</button>
+  </div>
+</mat-dialog-actions>
+
+

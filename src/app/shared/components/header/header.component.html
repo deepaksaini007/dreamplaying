@@ -1,0 +1,163 @@
+<div class="horizontal-menu">
+    <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+        <div class="container-fluid container-custom">
+            <div class="navbar-menu-wrapper d-flex align-items-center">
+
+                <ul class="navbar-nav navbar-nav-right mr-lg-12 user-action-nav">
+                    <li class="nav-item"><span class="nav-profile-name current-time">{{currentTime | date : 'hh:mm:ss a'}}</span></li>
+
+                    <!-- <li class="nav-item dropdown mr-4">
+                            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" [routerLink]="['/dashboard/notification']" data-toggle="dropdown">
+                                <i class="mdi mdi-bell mx-0"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                            </div>
+                        </li> -->
+                        <li class="nav-item nav-profile dropdown mr-0 mr-sm-2 " style="margin-right: 0;">
+                            <a class="nav-link dropdown-toggle" style="cursor: pointer;" data-bs-toggle="dropdown" id="profileDropdown">
+                                <span class="nav-profile-name">Welcome {{(loggedInUser$|async)?.display_name}}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                                <a *ngIf="isAdminUser$|async" class="dropdown-item" routerLinkActive="router-link-active" routerLink="/manageUsers" style="cursor: pointer;">
+                                    <i class="mdi mdi-users text-primary"></i> Manage Users
+                                </a>
+                                <a class="dropdown-item" routerLinkActive="router-link-active" (click)="logout()" style="cursor: pointer;">
+                                    <i class="mdi mdi-logout text-primary"></i> Logout
+                                </a>
+                            </div>
+                        </li>
+                </ul>
+                <!-- <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+                    <span class="mdi mdi-menu"></span>
+                </button> -->
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="mobile-menu">
+            <!-- <h1>My Dream Team</h1> -->
+            <img src="assets/images/logo-img.png" class="image">
+            <span (click)="toggle()" class="mdi mdi-menu close-menu">
+                <i class="material-icons">menu</i>
+            </span>
+        </div>
+        <nav *ngIf="assignedMenus$" class="bottom-navbar" [ngClass]="toggleMenu ? 'show':'hide'">
+            <div class="container-fluid container-custom">
+                <div id="userDashboard" class="main-menu-wrapper">
+
+                    <a class="nav-branding text-primary" routerLink="/dashboard">
+
+                        <img src="assets/images/logo-img.png" class="image">
+                    </a>
+                    <ul class="nav page-navigation">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" routerLink="/dashboard" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">dashboard</mat-icon>
+
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li> -->
+                        <li class="nav-item" *ngFor="let menu of assignedMenus$|async">
+                            <a class="nav-link" [routerLink]="[menu.menu_url]" routerLinkActive="router-link-active">
+                                <!-- <i class="mdi mdi-library-plus menu-icon"></i> -->
+                                <mat-icon class="text-primary">{{menu.menu_icon}}</mat-icon>
+
+                                <span class="menu-title">{{menu.menu_name}}</span>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" routerLink="/news" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">language</mat-icon>
+
+                                <span class="menu-title">News</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/stories" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">event_seat</mat-icon>
+                                <span class="menu-title">Story</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/faq" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">question_answer</mat-icon>
+
+                                <span class="menu-title">FAQ</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/tips" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">info</mat-icon>
+
+                                <span class="menu-title">Tip</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/videos" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">missed_video_call</mat-icon>
+
+                                <span class="menu-title">Video</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/prediction" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">laptop_mac</mat-icon>
+
+                                <span class="menu-title">Prediction</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/teams" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">supervised_user_circle</mat-icon>
+
+                                <span class="menu-title">Team</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/master-setting" routerLinkActive="router-link-active">
+                                <mat-icon class="text-primary">settings</mat-icon>
+
+                                <span class="menu-title">Feedbacks</span>
+                            </a>
+                        </li> -->
+                        <!-- <li class="nav-item" >
+                            <a style="cursor: pointer;" class="nav-link nav-dropdown" (click)="openMenu('1')">
+                                <mat-icon class="text-primary">art_track</mat-icon>
+
+                                <span class="menu-title">Material UI</span>
+                                <img src="assets/images/down-arrow.svg" alt="" style="width: 10px;vertical-align: middle;margin-left: 5px;transform: translateY(2px);">
+                            </a>
+                            <div class="submenu" [ngClass]="clickedIndex == 1 ? 'active':''">
+                                <ul class="submenu-item">
+                                    <li class="nav-item"><a class="nav-link" [routerLink]="['/buttons']" routerLinkActive="router-link-active">
+                                   Button</a></li>
+
+                                </ul>
+                                <ul class="submenu-item">
+                                    <li class="nav-item"><a class="nav-link" [routerLink]="['/badges']" routerLinkActive="router-link-active">Badges</a></li>
+
+                                </ul>
+                                <ul class="submenu-item">
+                                    <li class="nav-item"><a class="nav-link" [routerLink]="['/cards']" routerLinkActive="router-link-active">Cards</a></li>
+
+                                </ul>
+                                <ul class="submenu-item">
+                                    <li class="nav-item"><a class="nav-link" [routerLink]="['/lists']" routerLinkActive="router-link-active">List</a></li>
+
+                                </ul>
+                            </div>
+                        </li> -->
+
+
+
+
+
+                        <li class="nav-item"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="backdrop" [ngClass]="toggleMenu ? 'show':'hide'" (click)="toggle()"></div>
+    </div>
+</div>

@@ -1,0 +1,182 @@
+<app-header>
+</app-header>
+<div class="container-fluid page-body-wrapper bevel tlbr">
+    <div class="main-panel">
+
+        <div class="content-wrapper">
+            <!--TITLE -->
+            <div id="paper-top" class="col-md-12">
+                <div class="row">
+                    <nav aria-label="breadcrumb ">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-3 my-2 dashboard-cards">
+                    <div class="card">
+                        <div class="card-thumbnail card-thumbnail-1">
+                            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">play_circle_outline</mat-icon>
+                        </div>
+                        <div class="card-info">
+                            <h3>{{dashboardData?.videos}}</h3>
+                            <p>Videos Added</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2 dashboard-cards">
+                    <div class="card">
+                        <div class="card-thumbnail card-thumbnail-2">
+                            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">sports_cricket</mat-icon>
+                        </div>
+                        <div class="card-info">
+                            <h3>{{dashboardData?.predictions}}</h3>
+                            <p>Predictions Added</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 my-2 dashboard-cards">
+                    <div class="card">
+                        <div class="card-thumbnail card-thumbnail-3">
+                            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">play_circle_outline</mat-icon>
+                        </div>
+                        <div class="card-info">
+                            <h3>{{dashboardData?.stories}}</h3>
+                            <p>Stories Added</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 my-2 dashboard-cards">
+                    <div class="card">
+                        <div class="card-thumbnail card-thumbnail-4">
+                            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">article</mat-icon>
+                        </div>
+                        <div class="card-info">
+                            <h3>{{dashboardData?.news}}</h3>
+                            <p>News Added</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2 dashboard-cards">
+                    <div class="card">
+                        <div class="card-thumbnail card-thumbnail-5">
+                            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">auto_stories</mat-icon>
+                        </div>
+                        <div class="card-info">
+                            <h3>{{dashboardData?.stories}}</h3>
+                            <p>Stories Added</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row mt-2">
+
+
+                <div class="col-md-3 dashboard-cards">
+                    <div class="card   card-solid-color card-solid-color-1">
+                        <div class="card-thumbnail">
+                            <mat-icon role="img" class="mat-icon notranslate  material-icons text-danger" aria-hidden="true" data-mat-icon-type="font">account_circle</mat-icon>
+                        </div>
+                        <div class="card-info">
+                            <h3>386</h3>
+                            <p>New Clients</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <mat-card class="mat-card mat-focus-indicator bg-warning">
+                        <mat-card-content class="mat-card-content">
+                            <div class="d-flex no-block">
+                                <div class="m-r-10 no-shrink"><button mat-fab="" mat-card-icon="" class="mat-focus-indicator shadow-none bg-inverse bg-default mat-fab mat-button-base "><span
+                                  class="mat-button-wrapper">
+                                  <mat-icon role="img"
+                                      class="mat-icon notranslate material-icons text-warning" aria-hidden="true"
+                                      data-mat-icon-type="font">star</mat-icon>
+                              </span><span matripple="" class="mat-ripple mat-button-ripple mat-button-ripple-round"
+                                  ng-reflect-disabled="false" ng-reflect-centered="false"
+                                  ng-reflect-trigger="[object HTMLButtonElement]"></span><span
+                                  class="mat-button-focus-overlay"></span></button></div>
+                                <div>
+                                    <h3 class="m-0">386</h3>
+                                    <h6 class="text-white m-0">New Clients</h6>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+                <div class="col-md-3">
+                    <mat-card class="mat-card mat-focus-indicator bg-success">
+                        <mat-card-content class="mat-card-content">
+                            <div class="d-flex no-block">
+                                <div class="m-r-10 no-shrink"><button mat-fab="" mat-card-icon="" class="mat-focus-indicator shadow-none bg-inverse bg-default mat-fab mat-button-base "><span
+                                  class="mat-button-wrapper">
+                                  <mat-icon role="img"
+                                      class="mat-icon notranslate material-icons text-success" aria-hidden="true"
+                                      data-mat-icon-type="font">android</mat-icon>
+                              </span><span matripple="" class="mat-ripple mat-button-ripple mat-button-ripple-round"
+                                  ng-reflect-disabled="false" ng-reflect-centered="false"
+                                  ng-reflect-trigger="[object HTMLButtonElement]"></span><span
+                                  class="mat-button-focus-overlay"></span></button></div>
+                                <div>
+                                    <h3 class="m-0">386</h3>
+                                    <h6 class="text-white m-0">New Clients</h6>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+                <div class="col-md-3">
+                    <mat-card class="mat-card mat-focus-indicator bg-info">
+                        <mat-card-content class="mat-card-content">
+                            <div class="d-flex no-block">
+                                <div class="m-r-10 no-shrink"><button mat-fab="" mat-card-icon="" class="mat-focus-indicator shadow-none bg-inverse bg-default mat-fab mat-button-base mr-3"><span
+                                  class="mat-button-wrapper">
+                                  <mat-icon role="img"
+                                      class="mat-icon notranslate material-icons text-info" aria-hidden="true"
+                                      data-mat-icon-type="font">add_shopping_cart</mat-icon>
+                              </span><span matripple="" class="mat-ripple mat-button-ripple mat-button-ripple-round"
+                                  ng-reflect-disabled="false" ng-reflect-centered="false"
+                                  ng-reflect-trigger="[object HTMLButtonElement]"></span><span
+                                  class="mat-button-focus-overlay"></span></button></div>
+                                <div>
+                                    <h3 class="m-0">386</h3>
+                                    <h6 class="text-white m-0">New Clients</h6>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+            </div> -->
+
+            <router-outlet></router-outlet>
+            <div class="row ag-grid-wrapper">
+                <div class="col-md-8 margin-col">
+                    <!-- <app-table [tableTitle]="driverTable"></app-table> -->
+                </div>
+                <div class="col-md-4 margin-col">
+                    <!-- <app-side-expiry></app-side-expiry> -->
+                </div>
+            </div>
+            <!-- <div class="row grid-margin ">
+          <div class="col-md-8">
+              <app-table [tableTitle]="liveTruckTable"></app-table>
+          </div>
+          <div class="col-md-4">
+              <app-activities></app-activities>
+          </div>
+      </div> -->
+
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

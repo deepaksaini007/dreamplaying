@@ -1,0 +1,79 @@
+<app-header></app-header>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper bevel tlbr">
+ <!-- main-panel starts -->
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <!--TITLE -->
+            <div id="paper-top" class="col-md-12">
+                <div class="row">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> App Data List</li>
+                        </ol>
+                    </nav>
+
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+      <div class="row" *ngIf="shouldShow">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="row">
+              <div class="strap-background card-heading-wrap">
+                <h4 class="card-title bg-primary text-white p-2">
+                  Master App Data List
+                </h4>
+                <div class="card-heading-action">
+                  <button
+                    type="button"
+                    (click)="openItemDialog()"
+                    class="btn btn-custom btn-sm"
+                  >
+                    Add Item
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <!-- <div class="col-md-3 col-sm-12 mb-1 pd-mob-0">
+
+                                    <div class="list-group">
+                                        <div class="list-group-item list-heading-grp bg-dark text-left" style="padding: 10px !important;">
+                                          <i class="mdi mdi-file-document"></i>&nbsp;&nbsp; Parent Category </div>
+                                          <div *ngIf="activeCategoryView" >
+                                            <div class="list-group-item" *ngFor="let item of categoryKeys">
+                                              <a class="nav-link" matRipple [ngClass]="{'active':activeCategoryView===item,'not-active':activeCategoryView!==item}" (click)="changeCategoryView(item)">{{item}}</a>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div> -->
+                <div class="col-md-12 col-sm-12 mb-1 profile-right">
+                  <div class="profile-right-inner">
+                    <div class="list-group-item">
+                      <div class="table-responsive tbl-height">
+                        <ag-grid-angular
+                          style="width: 100%; height: 100%"
+                          class="ag-theme-material"
+                          [defaultColDef]="defaultColDef"
+                          [frameworkComponents]="frameworkComponents"
+                          [rowData]="rowData|async"
+                          [columnDefs]="columnDefs"
+                        >
+                        </ag-grid-angular>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

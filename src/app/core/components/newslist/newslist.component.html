@@ -1,0 +1,213 @@
+<app-header></app-header>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper bevel tlbr">
+  <!-- main-panel starts -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <!--TITLE -->
+      <div id="paper-top" class="col-md-12">
+        <div class="row">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                News List
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!--/ TITLE -->
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div
+              class="col-md-12 dispatch-board-top-section"
+              *ngIf="activeCategoryView"
+            >
+              <ul
+                class="nav nav-pills nav-pills-custom"
+                id="pills-tab-custom"
+                role="tablist"
+              >
+              <li class="nav-item" *ngFor="let item of categoryKeys">
+                <a
+                  class="btn"
+                  matRipple
+                  [ngClass]="{
+                    'btn-primary': activeCategoryView === item,
+                    'not-active': activeCategoryView !== item
+                  }"
+                  (click)="changeCategoryView(item)"
+                  >{{ item | uppercase }}({{
+                    newsMasterData && newsMasterData[item]?.length
+                  }})</a
+                >
+              </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="strap-background card-heading-wrap">
+                <h4 class="card-title bg-primary text-white p-2">News List</h4>
+                <div class="card-heading-action">
+                  <button
+                    type="button"
+                    (click)="truncateNews()"
+                    class="btn btn-custom btn-sm mr-2"
+                  >
+                    Delete ALL
+                  </button>
+                  <button
+                    type="button"
+                    (click)="openNewsDialog()"
+                    class="btn btn-custom btn-sm"
+                  >
+                    Add News
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row card-row">
+                <div *ngIf="rowData && rowData.length <= 0">
+                  <app-no-rows [noRowsMessage]="'No News Found'"></app-no-rows>
+                </div>
+                <div
+                  class="col-lg-3 col-md-4 col-sm-6 col-xs-12 card-col"
+                  *ngFor="let row of rowData"
+                >
+                  <div class="card h-100 card-common card-common-no-thumb">
+                    <div class="card-action">
+                      <button
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                        aria-label="Example icon-button with a menu"
+                      >
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button
+                          mat-menu-item
+                          [disabled]="row.is_published"
+                          (click)="publishNews(row)"
+                        >
+                          <span>Publish</span>
+                        </button>
+                        <button mat-menu-item (click)="editNews(row)">
+                          <span>Edit</span>
+                        </button>
+                        <button
+                          mat-menu-item
+                          (click)="activateDeactivateNews(row)"
+                        >
+                          <span *ngIf="!row.is_active">Active</span>
+                          <span *ngIf="row.is_active">Deactive</span>
+                        </button>
+                        <button
+                          mat-menu-item
+                          (click)="featuredNotFeatured(row)"
+                        >
+                          <span *ngIf="!row.is_featured">Set Featured</span>
+                          <span *ngIf="row.is_featured">Remove featured</span>
+                        </button>
+                        <button
+                          mat-menu-item
+                          (click)="deleteNews(row)"
+                          style="
+                            background-color: #db1d29 !important;
+                            color: #fff !important;
+                          "
+                        >
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+                    <div class="card-thumbnail">
+                      <img src="{{ row.image_thumbnail }}" alt="" />
+                    </div>
+                    <div class="card-body">
+                      <div class="publish-date-body">
+                        <p>
+                          <span>Publish Date: </span
+                          >{{ row.published_on | date: "MMM dd, yyyy" }}
+                        </p>
+                      </div>
+                      <div class="card-title" (click)="viewDetails()">
+                        <h2>{{ row.news_title_en }}</h2>
+                        <h3>{{ row.news_title_hn }}</h3>
+                      </div>
+                      <div class="card-description">
+                        <p
+                          [innerHTML]="
+                            row.news_decription_en?.substring(0, 150) + '...'
+                          "
+                        ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr class="thead-background thead-color">
+                                            <th>Title </th>
+                                            <th>Description </th>
+                                            <th>Status</th>
+                                            <th>Order Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE</td>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE...</td>
+                                            <td><span class="badge badge-primary">Deactive</span></td>
+                                            <td>
+                                                <button mat-button [matMenuTriggerFor]="menu">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item>Edit</button>
+                                                </mat-menu>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE</td>
+                                            <td> Remainder Of IPL Basket Ball 2021 To Be Held In UAE...</td>
+                                            <td><span class="badge badge-success">Active</span></td>
+                                            <td>
+                                                <button mat-button [matMenuTriggerFor]="menu">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                                <mat-menu #menu="matMenu">
+                                                    <button mat-menu-item (click)=addNews()> Item 1</button>
+                                                    <button mat-menu-item>Item 2</button>
+                                                </mat-menu>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table><br>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-5">
+                                        <div class="dataTables_info" id="Loadlisting_info" role="status"
+                                            aria-live="polite">
+                                            Showing 1 to 2 of 2 entries
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7"></div>
+                                </div>
+                            </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="div-extraspace"></div>
+    </div>
+  </div>
+
+  <!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+<app-footer></app-footer>

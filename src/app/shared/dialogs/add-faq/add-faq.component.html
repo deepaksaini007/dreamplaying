@@ -1,0 +1,58 @@
+<div class="modal-head">
+  <h4>Add FAQ</h4>
+  <i class="material-icons" (click)="closeDialog()">close</i>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form class="add-driver" [formGroup]="formData">
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <mat-form-field appearance="outline">
+              <mat-label>Select Category <span class="text-primary" >*</span></mat-label>
+             <mat-select formControlName="category_details" [compareWith]="objectComparisonFunction">
+             <mat-option *ngFor="let option of (allCategories$ | async)?.stories" [value]="option">{{option.cat_display_name_en}}</mat-option>
+          </mat-select>
+          </mat-form-field>
+      </div>
+                          <div class="col-md-12">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Enter Heading  (English)  <span class="text-primary" >*</span></mat-label>
+                                  <input matInput type="text" placeholder="Enter Heading" maxlength="90" minlength="3" formControlName="faq_title_en" >
+                                  <mat-error>Heading Is Required (min 3 char)</mat-error>  </mat-form-field>
+                          </div>
+
+                          <div class="col-md-12">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Enter Heading (Hindi) <span class="text-primary" >*</span></mat-label>
+                                <input matInput type="text" placeholder="Enter Heading" minlength="3" maxlength="90" formControlName="faq_title_hn" >
+                                <mat-error>Heading Is Required (min 3 char)</mat-error>   </mat-form-field>
+                        </div>
+
+                          <div class="col-md-6">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Enter FAQ Description in (English) <span class="text-primary" >*</span></mat-label>
+                                <textarea matInput type="text" placeholder="Enter Description" minlength="10" maxlength="900" rows="6" formControlName="faq_decription_en"></textarea>
+                                <mat-error>Enter FAQ Description Is Required (min 10 char)</mat-error>        </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                          <mat-form-field appearance="outline">
+                              <mat-label>Enter FAQ Description (Hindi)<span class="text-primary" >*</span></mat-label>
+                              <textarea matInput type="text" placeholder="Enter Description" maxlength="900"  minlength="10" rows="6" formControlName="faq_decription_hn"></textarea>
+                              <mat-error>Enter FAQ Description Is Required (min 10 char)</mat-error>   </mat-form-field>
+                      </div>
+
+
+      </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <div class="text-right btn-wrap">
+      <button class="btn btn-primary" type="submit" (click)="submitData()">
+  Submit
+</button>
+  </div>
+</mat-dialog-actions>
+

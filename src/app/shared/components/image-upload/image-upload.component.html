@@ -1,0 +1,50 @@
+<div class="uploader-parent" [ngClass]="{ upload1: design }">
+  <div class="bordered_container">
+    <ngx-file-drop
+      [dropZoneLabel]="labelName!"
+      [directory]="false"
+      [showBrowseBtn]="!disabled"
+      accept="image/*"
+      [multiple]="false"
+      [dropZoneClassName]="fileErrorMessage?'dropzone dropzone-error':'dropzone'"
+      (onFileDrop)="dropped($event)"
+      [disabled]="disabled"
+    ></ngx-file-drop>
+    <mat-error *ngIf="fileErrorMessage">{{fileErrorMessage}}</mat-error>
+    <div class="upload-wrapper">
+      <span
+        *ngIf="error"
+        matTooltip="{{ error }}"
+        class="upload-error"
+        matTooltipClass="example-tooltip-red"
+        aria-label="Button that shows a red tooltip"
+        ><i class="material-icons">info</i> {{ error }}</span
+      >
+      <div
+        class="img-preview-wrap"
+        [ngClass]="zoomGallery ? 'zoom-gallery' : ''"
+      >
+        <i
+          class="material-icons close-gallery"
+          *ngIf="zoomGallery"
+          (click)="lightbox()"
+          >close</i
+        >
+        <img
+          src="{{ 'data:image/jpg;base64,' + base64Image }}"
+          *ngIf="base64Image && !zoomGallery && !isUrl"
+          (click)="lightbox()"
+        />
+        <img
+        [src]="base64Image"
+        *ngIf="base64Image && !zoomGallery && isUrl"
+        (click)="lightbox()"
+      />
+        <img
+          src="{{ 'data:image/jpg;base64,' + base64Image }}"
+          *ngIf="base64Image && zoomGallery && !isUrl"
+        />
+      </div>
+    </div>
+  </div>
+</div>

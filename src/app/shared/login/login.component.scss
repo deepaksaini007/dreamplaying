@@ -1,0 +1,243 @@
+@import '../../../../mixins';
+@import '../../../../mixins';
+.btn-custom {
+    border: 1px solid white !important;
+    color: #f35e2e;
+    background: #fff;
+    line-height: 20px;
+}
+.btn-custom:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #f35e2e;
+    line-height: 20px;
+}
+.auth-wrapper {
+    height: 99%;
+    padding: 25px 52px 50px 25px;
+    background: url(../../../assets/images/dream-abstract.png);
+    background-color: white;
+    @include breakpoint(tablet) {
+        padding: 20px;
+    }
+    .auth-left {
+        background: $primary url(../../../assets/images/web-img.png);
+        height: 100%;
+        width: 70vw;
+        border-radius: 3rem;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-shadow: 0 3px 66px rgb(0 0 0 / 16%);
+        padding-right: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        @include breakpoint(tablet) {
+            display: block;
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+        }
+        @include breakpoint(phone-landscape) {
+            border-radius: 1rem;
+        }
+        .auth-left-content-wrapper {
+            padding: 0 30px;
+            max-width: 80%;
+            @include breakpoint(tablet) {
+                max-width: 100%;
+            }
+            h1 {
+                @include fonts(60px, 1.4, 500);
+                color: $white;
+                margin-bottom: 0;
+                @include breakpoint(phone-landscape) {
+                    font-size: 40px;
+                }
+                @include breakpoint(phone) {
+                    font-size: 25px;
+                }
+            }
+            p {
+                @include fonts(20px, 1.4, 400);
+                color: $white;
+                @include breakpoint(phone-landscape) {
+                    font-size: 15px;
+                }
+                @include breakpoint(phone) {
+                    font-size: 13px;
+                }
+            }
+        }
+        .auth-left-foot-menu {
+            position: absolute;
+            bottom: 10px;
+            left: 40px;
+            @include breakpoint(tablet) {
+                position: static;
+            }
+            ul {
+                padding: 0;
+                margin: 0;
+                li {
+                    list-style: none;
+                    display: inline-block;
+                    padding: 10px;
+                    color: $white;
+                    cursor: pointer;
+                    font-size: 15px;
+                    @include breakpoint(phone) {
+                        list-style: none;
+                        display: inline-block;
+                        padding: 5px;
+                        color: #ffffff;
+                        cursor: pointer;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+    .auth-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        transform: translateX(50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .auth-form-wrapper {
+            background: #ffffff;
+            height: auto;
+            width: 450px;
+            padding: 30px;
+            @include borderRadius();
+            @include boxShadow(0, 4px, 28px, 0);
+            @include breakpoint(phone) {
+                width: 98%;
+            }
+            .form-foot {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .forgot-pwd {
+                    color: $primary;
+                    cursor: pointer;
+                    font-size: 15px;
+                    font-weight: 500;
+                    margin: 0;
+                }
+                @include breakpoint(phone) {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+        }
+        @include breakpoint(tablet) {
+            position: static;
+            width: 100%;
+            transform: none;
+            margin-bottom: -110px;
+            margin-top: 10px;
+        }
+    }
+}
+
+.auth-tab {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: left;
+    li {
+        list-style: none;
+        display: inline-block;
+        @include fonts($f-xl, 1.4, 400);
+        color: $gray;
+        position: relative;
+        cursor: pointer;
+        @include breakpoint(phone) {
+            padding: 5px;
+        }
+        &::after {
+            background: $white;
+            width: 100%;
+            height: 4px;
+            bottom: -8px;
+            border-radius: 30px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            content: '';
+            position: absolute;
+        }
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+        &.active {
+            @include fonts($f-xl, 1.4, 500);
+            color: $dark;
+            &::after {
+                background: $primary;
+            }
+        }
+    }
+}
+
+.drum-truck {
+    position: absolute;
+    bottom: -47px;
+    right: -60px;
+    width: 240px;
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+footer.copyright {
+    padding: 14px;
+    padding-left: 50px;
+    @include breakpoint(tablet) {
+        display: none;
+        padding: 14px;
+        padding-left: 50px;
+        position: absolute;
+        bottom: 0;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+        width: auto;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        bottom: 10px;
+    }
+    p {
+        color: $gray;
+        margin-bottom: 0;
+    }
+}
+
+footer.copyright-1 {
+    padding: 14px;
+    display: none;
+    @include breakpoint(tablet) {
+        display: block;
+        padding: 14px;
+        width: 100%;
+        margin: 0;
+        width: auto;
+        margin: auto;
+        text-align: center;
+        bottom: 10px;
+    }
+    p {
+        color: $gray;
+        margin-bottom: 0;
+    }
+}

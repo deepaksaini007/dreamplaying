@@ -1,0 +1,137 @@
+<div class="modal-head">
+  <h4>Add App Data</h4>
+  <i class="material-icons" (click)="closeDialog()">close</i>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form class="add-driver" [formGroup]="appFormGroup">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>App Name <span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('app_name'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter App Name" maxlength="30" minlength="5" formControlName="app_name">
+
+        <mat-error>App Name is Required (minimum 5 Char)</mat-error> </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Package Name<span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('package_name'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Package Name" maxlength="30" minlength="12"  formControlName="package_name">
+
+        <mat-error>Package Name is Required (minimum 12 Char)</mat-error>
+      </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Banner ID 1<span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('banner_id'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Banner ID 1" maxlength="100"  minlength="12"  formControlName="banner_id">
+
+        <mat-error>Banner Id is Required (minimum 12 Char)</mat-error>
+      </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Banner ID 2<span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('banner_id1'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Banner ID 2" maxlength="100"  minlength="12"  formControlName="banner_id1">
+
+        <mat-error>Banner Id 2 is Required (minimum 12 Char)</mat-error>
+      </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Interstitial ID <span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('interstitial_id'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Interstitial  ID" maxlength="100"  minlength="12"
+            formControlName="interstitial_id">
+            <mat-error>Interstitial Id is Required (minimum 12 Char)</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Native Add ID <span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('native_add_id'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Native Add ID" maxlength="100"  minlength="12"
+            formControlName="native_add_id">
+            <mat-error>Native Add Id is Required (minimum 12 Char)</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Console ID <span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('console_id'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Console ID" maxlength="100"  minlength="12"  formControlName="console_id">
+          <mat-error >Console Id is Required (minimum 12 Char)</mat-error>
+          <mat-error *ngIf="appFormGroup.get('console_id')?.hasError('min')">Console Id can not be less than 12</mat-error>
+          <!-- <mat-error *ngIf="appFormGroup.get('console_id')?.hasError('maxLength')">Console Id can not be less than 12</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Console Password <span class="text-primary"  *ngIf="validatorService.hasRequiredField(appFormGroup.get('console_password'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Console Password" maxlength="20" minlength="8"
+            formControlName="console_password">
+            <mat-error>Console Password is Required (minimum 8 Char)</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Email <span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('contact_email'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Console Email" maxlength="300" minlength="10" formControlName="contact_email">
+          <mat-error>Contact Email is Required (minimum 10 Char)</mat-error>
+         </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Phone <span class="text-primary"  *ngIf="validatorService.hasRequiredField(appFormGroup.get('contact_phone'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Contact Phone" maxlength="12" minlength="10" formControlName="contact_phone">
+          <mat-error>Contact Phone is Required (minimum 10 Char)</mat-error>  </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Click Count <span class="text-primary" *ngIf="validatorService.hasRequiredField(appFormGroup.get('click_count'))">*</span></mat-label>
+          <input matInput type="number" placeholder="Enter Click Count" maxlength="1"  minlength="1"  formControlName="click_count">
+          <mat-error>Click Count is Required (minimum 1 Char)</mat-error></mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Logo Link <span class="text-primary"  *ngIf="validatorService.hasRequiredField(appFormGroup.get('app_logo_drive_link'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Logo Link"  minlength="10" maxlength="300"   formControlName="app_logo_drive_link">
+          <mat-error>Logo Link is Required (minimum 10 Char)</mat-error></mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Policy Link <span class="text-primary"  *ngIf="validatorService.hasRequiredField(appFormGroup.get('privacy_policy_site_link'))">*</span></mat-label>
+          <input matInput type="text" placeholder="Enter Policy Link" maxlength="300"  minlength="10"   formControlName="privacy_policy_site_link">
+          <mat-error>Policy Link is Required (minimum 10 Char)</mat-error> </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" *ngIf="dialogData && dialogData.appData">
+          <mat-label>Status<span class="text-primary"  *ngIf="validatorService.hasRequiredField(appFormGroup.get('status'))">*</span></mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="Added">Added</mat-option>
+            <mat-option value="Development">Development</mat-option>
+            <mat-option value="Testing">Testing</mat-option>
+            <mat-option value="Published">Published</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" >
+          <mat-label>Published On <span class="text-primary"  *ngIf="validatorService.hasRequiredField(appFormGroup.get('published_on'))">*</span></mat-label>
+          <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="published_on"
+            placeholder="Published On">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <div class="text-right btn-wrap">
+    <button class="btn btn-primary" (click)="submitData()" [disabled]="!appFormGroup.valid" type="submit">
+      Submit
+    </button>
+  </div>
+</mat-dialog-actions>

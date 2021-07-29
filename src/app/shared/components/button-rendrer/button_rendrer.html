@@ -1,0 +1,5 @@
+<button *ngIf="!isIconButton" type="button" ID="btnPlus" class="btn btn-custom btn-sm" [ngClass]="className" Text="Add Drivers" (click)="btnClickedHandler($event)"> {{buttonText}} </button>
+<button *ngIf="isIconButton" type="button" mat-icon-button color="accent" (click)="btnClickedHandler($event)">
+    <mat-icon>{{icon}}</mat-icon>
+</button>
+                                  
