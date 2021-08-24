@@ -123,6 +123,7 @@
   },
   "defaultProject": "dream-playing",
   "cli": {
+    "analytics": "5d8360e8-fcc1-4c84-b2da-a6d09e0a9087",
     "defaultCollection": "@ngrx/schematics"
   }
 }
